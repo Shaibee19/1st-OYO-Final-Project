@@ -5,40 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>fruity Final Project</title>
     <link rel="stylesheet" href="./style.css" />
-    <script
-      src="https://kit.fontawesome.com/c00ad18886.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/c00ad18886.js" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
   </head>
 
   <body>
     <section id="landing">
-      <nav>
-          <div class="row">
-              <div class="nav__logo">
-                  <img
-                  src="./assets/Planty Logo -- light.jpg"
-                  alt=""
-                  class="nav__logo--img"
-                  />
-                  <div class="nav__logo--title">Planty</div>
-                </div>
-                <ul class="nav__links">
-                    <li>
-                        <a href="" class="nav__link link__hover-effect">Home</a>
-                    </li>
-                    <li>
-                        <a href="" class="nav__link link__hover-effect"
-                        >Find your Plants</a
-                        >
-                    </li>
-                    <li>
-                        <a href="" class="nav__link nav__link--primary">Contact Me</a>
-                    </li>
-                </ul>
+      <nav class="container">
+        <div class="row nav__row">
+          <figure class="nav__logo">
+            <img class="nav__logo--img" src="./assets/Planty Logo -- light.jpg" alt=""/>
+          </figure>
+          <div class="nav__logo--title">Planty</div>
+          <ul class="nav__links">
+            <li>
+              <a href="" class="nav__link link__hover-effect">Home</a>
+            </li>
+            <li>
+              <a href="" class="nav__link link__hover-effect">Find your Plants</a>
+            </li>
+            <li>
+              <a href="" class="nav__link nav__link--primary">Contact Me</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <header class="header">
+        <div class="container">
+          <h1 class="header--title">Nibble through our Plants</h1>
+          <div class="input__wrapper">
+            <input type="text" placeholder="Graze by Scientific name, Common name or Family"/>
+            <div class="search__wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-        </nav>
+          </div>
+        </div>
+      </header>
     </section>
+    <img src="./assets/Planty Header.jpg" alt="" class="bg--img"/>
+    <section id="results">
+      <div class="container">
+        <div class="row">
+          <h2 class="title">Search Results:</h2>
+          <h3 class="subtitle">
+            Growth Range: <span class="purple">herb</span>
+          </h3>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <div class="row footer__row">
+          <figure class="footer__logo">
+            <img class="footer__logo--img" src="./assets/Planty Logo -- dark.jpg" alt=""/>
+          </figure>
+          <div class="footer__social--list">
+            <a class="footer__social--link link__hover-effect link__hover-effect--white" 
+              href="https://github.com/Shaibee19" target="_blank">
+              GitHub 
+            </a>
+            <a class="footer__social--link link__hover-effect link__hover-effect--white" 
+              href="https://www.linkedin.com/in/shai-gray-woodland-aa285343/" target="_blank">
+              LinkedIn 
+            </a>
+            <a class="footer__social--link link__hover-effect link__hover-effect--white"
+              href="#" onclick="toggleModal()">
+              Contact 
+            </a>
+            <a class="footer__social--link link__hover-effect link__hover-effect--white"
+              href="./assets/Shai Gray-Woodland Resume 20250513.pdf" target="_blank">
+              Resume 
+            </a>
+          </div>
+          <div class="footer__copyright">
+            Copyright © 2025 Shai Gray-Woodland
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

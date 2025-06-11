@@ -4,8 +4,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: #ffaf00;
     font-family: "Savate", sans-serif;
+    letter-spacing: 1.5px;
 }
 
 html {
@@ -13,18 +13,15 @@ html {
 }
 
 body {
+    background-color: #ffaf00;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('./assets/Planty\ Header.jpg');
-    background-size: cover; 
-    background-position: center; 
-    height: 200px; 
-    /* opacity: 0.5 */
 }
 
-div {
-    display: block;
+.container {
+    padding: 50px 0;
+    width: 100%;
 }
 
 .row {
@@ -35,6 +32,10 @@ div {
     max-width: 1200px;
     margin: 0 auto;
     padding-top: 8px;
+}
+
+div {
+    display: block;
 }
 
 img {
@@ -51,6 +52,10 @@ li {
 
 a {
     text-decoration: none;
+}
+
+.purple {
+    color: #cb6ce6;
 }
 
 .link__hover-effect {
@@ -72,6 +77,11 @@ a {
     left: 0;
     width: 100%;
 }
+
+.link__hover-effect--white:after {
+    background-color: #fff;
+}
+
 
 
 /* 
@@ -108,7 +118,6 @@ nav {
     font-size: 24px;
     font-weight: 900;
     margin-left: 12px;
-    letter-spacing: 1px;
     padding-bottom: 2px;
 }
 
@@ -151,5 +160,57 @@ nav {
     bottom: -1px;
     height: 2px;
     width: 100%;
-    background: #f081b9;
+    background: #5bbd2dea;
+}
+
+.bg--img {
+    filter: blur();
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    height: 240px;
+    position: absolute;
+    z-index: -1;
+}
+
+/* 
+
+RESULTS
+
+*/
+
+/*
+
+    FOOTER
+
+*/
+
+footer {
+    position: relative;
+    background-color: #242424;
+    display: flex;
+    padding: 6% 0;
+}
+
+.footer__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo--img {
+    width: 70px;
+}
+
+.footer__social--list {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.footer__social--link,
+.footer__copyright {
+    color: white;
 }
