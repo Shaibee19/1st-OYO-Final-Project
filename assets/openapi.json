@@ -1,0 +1,1295 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Plants Database - OpenAPI 3.0",
+    "description": "This is the documentation for the Plants API.\n\nThe Plants Database API provides access to extensive data on over 100,000 plant species, meticulously cleaned and sourced directly from the United States Department of Agriculture (USDA). The API is structured according to the OpenAPI 3.0.3 specification, making it easy to understand and integrate into various platforms.",
+    "contact": {
+      "email": "tuvshno@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://plants10.p.rapidapi.com/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "plants",
+      "description": "Everything about Plants"
+    }
+  ],
+  "paths": {
+    "/plants": {
+      "get": {
+        "tags": [
+          "plants"
+        ],
+        "summary": "Get plant based on search parameters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Database id of plant",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Scientific symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "synonym_symbol",
+            "in": "query",
+            "description": "Scientific symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scientific_name",
+            "in": "query",
+            "description": "Scientific name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "common_name",
+            "in": "query",
+            "description": "Common name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "family",
+            "in": "query",
+            "description": "Family of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The starting point for returning results",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Plant"
+                      }
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The offset for the returned data"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The limit for the returned data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied"
+          },
+          "404": {
+            "description": "Plant not found"
+          }
+        }
+      }
+    },
+    "/plants/details": {
+      "get": {
+        "tags": [
+          "details"
+        ],
+        "summary": "Get plant details based on search parameters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Database id of plant",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Scientific symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "synonym_symbol",
+            "in": "query",
+            "description": "Scientific symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scientific_name",
+            "in": "query",
+            "description": "Scientific name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "common_name",
+            "in": "query",
+            "description": "Common name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "family",
+            "in": "query",
+            "description": "Family of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The starting point for returning results",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PlantDetails"
+                      }
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The offset for the returned data"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The limit for the returned data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied"
+          },
+          "404": {
+            "description": "Plant not found"
+          }
+        }
+      }
+    },
+    "/plants/rarity": {
+      "get": {
+        "tags": [
+          "rarity"
+        ],
+        "summary": "Get plant rarity based on search parameters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Database id of plant",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Scientific symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scientific_name",
+            "in": "query",
+            "description": "Scientific name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "common_name",
+            "in": "query",
+            "description": "Common name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rarity",
+            "in": "query",
+            "description": "Rarity Status of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The starting point for returning results",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PlantRarity"
+                      }
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The offset for the returned data"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The limit for the returned data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plants/growth_habit": {
+      "get": {
+        "tags": [
+          "growth habit"
+        ],
+        "summary": "Get plant growth habit based on search parameters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Database id of plant",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Scientific symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "symbol_symbol",
+            "in": "query",
+            "description": "Scientific synonym symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scientific_name",
+            "in": "query",
+            "description": "Scientific name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "common_name",
+            "in": "query",
+            "description": "Common name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "growth_habit",
+            "in": "query",
+            "description": "Growth Habit of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The starting point for returning results",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PlantGrowthHabit"
+                      }
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The offset for the returned data"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The limit for the returned data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied"
+          },
+          "404": {
+            "description": "Plant not found"
+          }
+        }
+      }
+    },
+    "/plants/states": {
+      "get": {
+        "tags": [
+          "states"
+        ],
+        "summary": "Get plant growth habit based on search parameters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Database id of plant",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Scientific symbol of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scientific_name",
+            "in": "query",
+            "description": "Scientific name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "common_name",
+            "in": "query",
+            "description": "Common name of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fips_code",
+            "in": "query",
+            "description": "State FIPS code of plant",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The starting point for returning results",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PlantState"
+                      }
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "The offset for the returned data"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "The limit for the returned data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter supplied"
+          },
+          "404": {
+            "description": "Plant not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Plant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "symbol": {
+            "type": "string",
+            "example": "ABAB"
+          },
+          "synonym_symbol": {
+            "type": "string",
+            "example": "ABAB"
+          },
+          "scientific_name": {
+            "type": "string",
+            "example": "Abutilon abutiloides (Jacq.) Garcke ex Hochr"
+          },
+          "common_name": {
+            "type": "string",
+            "example": "shrubby Indian mallow"
+          },
+          "family": {
+            "type": "string",
+            "example": "Malvaceae"
+          }
+        }
+      },
+      "PlantDetails": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "example": "ABGR"
+          },
+          "Active_Growth_Period": {
+            "type": "string",
+            "enum": [
+              "Spring and Summer",
+              "Year Round",
+              "Spring, Summer, Fall",
+              "Spring",
+              "Summer",
+              "Fall, Winter and Spring",
+              "Spring and Fall",
+              "Fall",
+              "Summer and Fall"
+            ],
+            "example": "Spring and Summer"
+          },
+          "After_Harvest_Regrowth_Rate": {
+            "type": "string",
+            "enum": [
+              "Slow",
+              "Moderate",
+              "Rapid"
+            ],
+            "example": "Slow"
+          },
+          "Bloat": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "example": "None"
+          },
+          "CN_Ratio": {
+            "type": "string",
+            "enum": [
+              "High",
+              "Low",
+              "Medium"
+            ],
+            "example": "High"
+          },
+          "Fall_Conspicuous": {
+            "type": "boolean",
+            "example": false
+          },
+          "Fire_Resistant": {
+            "type": "boolean",
+            "example": false
+          },
+          "Flower_Color": {
+            "type": "string",
+            "enum": [
+              "Brown",
+              "Purple",
+              "Yellow",
+              "Red",
+              "White",
+              "Green",
+              "Blue",
+              "Orange"
+            ],
+            "example": "Brown"
+          },
+          "Flower_Conspicuous": {
+            "type": "boolean",
+            "example": false
+          },
+          "Foliage_Color": {
+            "type": "string",
+            "enum": [
+              "Green",
+              "Dark Green",
+              "Gray-Green",
+              "Yellow-Green",
+              "Red",
+              "White-Gray"
+            ],
+            "example": "Green"
+          },
+          "Foliage_Porosity_Summer": {
+            "type": "string",
+            "enum": [
+              "Dense",
+              "Moderate",
+              "Porous"
+            ],
+            "example": "Dense"
+          },
+          "Foliage_Porosity_Winter": {
+            "type": "string",
+            "enum": [
+              "Dense",
+              "Moderate",
+              "Porous"
+            ],
+            "example": "Dense"
+          },
+          "Foliage_Texture": {
+            "type": "string",
+            "enum": [
+              "Coarse",
+              "Medium",
+              "Fine"
+            ],
+            "example": "Coarse"
+          },
+          "Fruit_Seed_Color": {
+            "type": "string",
+            "enum": [
+              "Brown",
+              "Purple",
+              "Black",
+              "Yellow",
+              "Red",
+              "Green",
+              "Orange",
+              "White",
+              "Blue"
+            ],
+            "example": "Brown"
+          },
+          "Fruit_Seed_Conspicuous": {
+            "type": "boolean",
+            "example": true
+          },
+          "Growth_Form": {
+            "type": "string",
+            "enum": [
+              "Single Stem",
+              "Multiple Stem",
+              "Single Crown",
+              "Rhizomatous",
+              "Bunch",
+              "Stoloniferous",
+              "Thicket Forming",
+              "Colonizing"
+            ],
+            "example": "Single Stem"
+          },
+          "Growth_Rate": {
+            "type": "string",
+            "enum": [
+              "Rapid",
+              "Slow",
+              "Moderate"
+            ],
+            "example": "Rapid"
+          },
+          "Height_Mature": {
+            "type": "number",
+            "example": 70
+          },
+          "Known_Allelopath": {
+            "type": "boolean",
+            "example": false
+          },
+          "Leaf_Retention": {
+            "type": "boolean",
+            "example": true
+          },
+          "Lifespan": {
+            "type": "string",
+            "enum": [
+              "Long",
+              "Moderate",
+              "Short"
+            ],
+            "example": "Long"
+          },
+          "Low_Growing_Grass": {
+            "type": "boolean",
+            "example": false
+          },
+          "Nitrogen_Fixation": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Medium",
+              "High",
+              "Low"
+            ],
+            "example": "None"
+          },
+          "Resprout_Ability": {
+            "type": "boolean",
+            "example": false
+          },
+          "Shape_and_Orientation": {
+            "type": "string",
+            "enum": [
+              "Erect",
+              "Semi-Erect",
+              "Conical",
+              "Rounded",
+              "Prostrate",
+              "Decumbent",
+              "Climbing",
+              "Vase",
+              "Irregular",
+              "Oval",
+              "Columnar"
+            ],
+            "example": "Erect"
+          },
+          "Toxicity": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Slight",
+              "Moderate",
+              "Severe"
+            ],
+            "example": "None"
+          },
+          "Adapted_to_Coarse_Textured_Soils": {
+            "type": "boolean",
+            "example": true
+          },
+          "Adapted_to_Fine_Textured_Soils": {
+            "type": "boolean",
+            "example": true
+          },
+          "Adapted_to_Medium_Textured_Soils": {
+            "type": "boolean",
+            "example": true
+          },
+          "Anaerobic_Tolerance": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "example": "None"
+          },
+          "CaCO3_Tolerance": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "Medium",
+              "None",
+              "High"
+            ],
+            "example": "Low"
+          },
+          "Cold_Stratification_Required": {
+            "type": "boolean",
+            "example": false
+          },
+          "Drought_Tolerance": {
+            "type": "string",
+            "enum": [
+              "Medium",
+              "Low",
+              "High",
+              "None"
+            ],
+            "example": "Medium"
+          },
+          "Fertility_Requirement": {
+            "type": "string",
+            "enum": [
+              "Medium",
+              "Low",
+              "High"
+            ],
+            "example": "Medium"
+          },
+          "Fire_Tolerance": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "example": "None"
+          },
+          "Frost_Free_Days_Minimum": {
+            "type": "integer",
+            "example": 180
+          },
+          "Hedge_Tolerance": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "High",
+              "None",
+              "Medium"
+            ],
+            "example": "Low"
+          },
+          "Moisture_Use": {
+            "type": "string",
+            "enum": [
+              "Medium",
+              "Low",
+              "High"
+            ],
+            "example": "Medium"
+          },
+          "pH_Maximum": {
+            "type": "number",
+            "example": 7.5
+          },
+          "pH_Minimum": {
+            "type": "number",
+            "example": 6
+          },
+          "Planting_Density_per_Acre_Maximum": {
+            "type": "integer",
+            "example": 700
+          },
+          "Planting_Density_per_Acre_Minimum": {
+            "type": "integer",
+            "example": 100
+          },
+          "Precipitation_Maximum": {
+            "type": "integer",
+            "example": 100
+          },
+          "Precipitation_Minimum": {
+            "type": "integer",
+            "example": 20
+          },
+          "Root_Depth_Minimum": {
+            "type": "integer",
+            "example": 20
+          },
+          "Salinity_Tolerance": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "None",
+              "Medium",
+              "High"
+            ],
+            "example": "Low"
+          },
+          "Shade_Tolerance": {
+            "type": "string",
+            "enum": [
+              "Intolerant",
+              "Tolerant",
+              "Intermediate"
+            ],
+            "example": "Intolerant"
+          },
+          "Temperature_Minimum": {
+            "type": "integer",
+            "example": 7
+          },
+          "Bloom_Period": {
+            "type": "string",
+            "enum": [
+              "Spring",
+              "Late Summer",
+              "Late Spring",
+              "Mid Summer",
+              "Mid Spring",
+              "Early Spring",
+              "Summer",
+              "Early Summer",
+              "Indeterminate",
+              "Fall",
+              "Late Winter",
+              "Winter"
+            ],
+            "example": "Spring"
+          },
+          "Commercial_Availability": {
+            "type": "string",
+            "enum": [
+              "Routinely Available",
+              "Field Collections Only",
+              "Contracting Only",
+              "No Known Source"
+            ],
+            "example": "Routinely Available"
+          },
+          "Fruit_Seed_Abundance": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "None",
+              "Medium",
+              "High"
+            ],
+            "example": "Low"
+          },
+          "Fruit_Seed_Period_Begin": {
+            "type": "string",
+            "enum": [
+              "Spring",
+              "Summer",
+              "Fall",
+              "Year Round",
+              "Winter"
+            ],
+            "example": "Spring"
+          },
+          "Fruit_Seed_Period_End": {
+            "type": "string",
+            "enum": [
+              "Fall",
+              "Summer",
+              "Year Round",
+              "Spring",
+              "Winter"
+            ],
+            "example": "Fall"
+          },
+          "Fruit_Seed_Persistence": {
+            "type": "boolean",
+            "example": true
+          },
+          "Propagated_by_Bare_Root": {
+            "type": "boolean",
+            "example": true
+          },
+          "Propagated_by_Bulb": {
+            "type": "boolean",
+            "example": false
+          },
+          "Propagated_by_Container": {
+            "type": "boolean",
+            "example": true
+          },
+          "Propagated_by_Corm": {
+            "type": "boolean",
+            "example": false
+          },
+          "Propagated_by_Cuttings": {
+            "type": "boolean",
+            "example": true
+          },
+          "Propagated_by_Seed": {
+            "type": "boolean",
+            "example": false
+          },
+          "Propagated_by_Sod": {
+            "type": "boolean",
+            "example": false
+          },
+          "Propagated_by_Sprigs": {
+            "type": "boolean",
+            "example": false
+          },
+          "Propagated_by_Tubers": {
+            "type": "boolean",
+            "example": false
+          },
+          "Seed_per_Pound": {
+            "type": "integer",
+            "example": "None"
+          },
+          "Seed_Spread_Rate": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Slow",
+              "Moderate",
+              "Rapid"
+            ],
+            "example": "None"
+          },
+          "Seedling_Vigor": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "example": "Low"
+          },
+          "Small_Grain": {
+            "type": "boolean",
+            "example": false
+          },
+          "Vegetative_Spread_Rate": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Moderate",
+              "Slow",
+              "Rapid"
+            ],
+            "example": "None"
+          },
+          "Berry_Nut_Seed_Product": {
+            "type": "boolean",
+            "example": false
+          },
+          "Christmas_Tree_Product": {
+            "type": "boolean",
+            "example": true
+          },
+          "Fodder_Product": {
+            "type": "boolean",
+            "example": false
+          },
+          "Lumber_Product": {
+            "type": "boolean",
+            "example": false
+          },
+          "Naval_Store_Product": {
+            "type": "boolean",
+            "example": false
+          },
+          "Nursery_Stock_Product": {
+            "type": "boolean",
+            "example": true
+          },
+          "Palatable_Browse_Animal": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "example": "Low"
+          },
+          "Palatable_Graze_Animal": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "example": "Low"
+          },
+          "Palatable_Human": {
+            "type": "boolean",
+            "example": false
+          },
+          "Post_Product": {
+            "type": "boolean",
+            "example": false
+          },
+          "Protein_Potential": {
+            "type": "string",
+            "enum": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "example": "Low"
+          },
+          "Pulpwood_Product": {
+            "type": "boolean",
+            "example": false
+          },
+          "Veneer_Product": {
+            "type": "boolean",
+            "example": false
+          },
+          "Height_at_20_Years_Maximum": {
+            "type": "integer",
+            "example": 40
+          },
+          "Fuelwood_Product": {
+            "type": "string",
+            "enum": [
+              "Medium",
+              "Low",
+              "High"
+            ],
+            "example": "Medium"
+          },
+          "Coppice_Potential": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "PlantState": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "symbol": {
+            "type": "string",
+            "example": "ABAB"
+          },
+          "synonym_symbol": {
+            "type": "string",
+            "example": "ABAB"
+          },
+          "scientific_name": {
+            "type": "string",
+            "example": "Abutilon abutiloides (Jacq.) Garcke ex Hochr"
+          },
+          "common_name": {
+            "type": "string",
+            "example": "shrubby Indian mallow"
+          },
+          "fips_code": {
+            "type": "string",
+            "example": "US78"
+          }
+        }
+      },
+      "PlantRarity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "symbol": {
+            "type": "string",
+            "example": "ABAB"
+          },
+          "scientific_name": {
+            "type": "string",
+            "example": "Abutilon abutiloides (Jacq.) Garcke ex Hochr"
+          },
+          "common_name": {
+            "type": "string",
+            "example": "shrubby Indian mallow"
+          },
+          "rarity": {
+            "type": "string",
+            "example": "G2"
+          }
+        }
+      },
+      "PlantGrowthHabit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "symbol": {
+            "type": "string",
+            "example": "ABAB"
+          },
+          "synonym_symbol": {
+            "type": "string",
+            "example": "ABAB"
+          },
+          "scientific_name": {
+            "type": "string",
+            "example": "Abutilon abutiloides (Jacq.) Garcke ex Hochr"
+          },
+          "common_name": {
+            "type": "string",
+            "example": "shrubby Indian mallow"
+          },
+          "growth_habit": {
+            "type": "string",
+            "example": "Forb/herb"
+          }
+        }
+      }
+    }
+  }
+}
