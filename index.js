@@ -1,26 +1,27 @@
 let isModalOpen = false;
-const userListEl = document.querySelector(".user-list");
+const plantListEl = document.querySelector(".plant-list");
 
 async function main() {
-  const users = await fetch("https://plants10.p.rapidapi.com/plants");
-  const usersData = await users.json();
-  userListEl.innerHTML = usersData.map(user => userHTML(user)).join("");
+  const plants = await fetch("https://plants10.p.rapidapi.com/plants");
+  const plantsData = await plants.json();
+  plantListEl.innerHTML = plantsData.map(plant => plantHTML(plant)).join("");
 }
 
 main();
 
-function showUserPosts(id) {
+function showPlants(id) {
     localStorage.setItem("id", id);
     window.location.href = `${window.location.origin}/user.html`
 }
 
-function userHTML(user){
-    return `<div class="user-card" onclick="showUserPosts(${user.id})">
-    <div class="user-card__container">
-        <h3>${user.name}</h4>
-        <p><b>Email:</b> ${user.email}</p>
-        <p><b>Phone:</b> ${user.phone}</p>
-        <p><b>Website:</b> <a href="https://${user.website}" target="_blank">${user.website}</a></p>
+function userHTML(plant){
+    return `<div class="plant-card" onclick="showPlants(${plant.id})">
+    <div class="plant-card__container">
+        <h3>${plant.name}</h4>
+        <p><b>Details:</b> ${plant.details}</p>
+        <p><b>Growth Habit:</b> ${plant.growthhabit}</p>
+        <p><b>Rarity:</b> ${plant.rarity}</p>
+        <p><b>States:</b> <a href="https://${plant.states}" target="_blank">${plant.website}</a></p>
     </div>
     </div>`;
 }
@@ -38,8 +39,8 @@ function userHTML(user){
 //     renderPosts(id)
 // }
 
-// async function renderPosts(userId) {
-//   const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId || id}`);
+// async function renderPosts(plantId) {
+//   const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?plantId=${plantId || id}`);
 //   const postsData = await posts.json();
 //   postListEl.innerHTML = postsData.map(post => postHTML(post)).join('');
 // }
