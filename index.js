@@ -19,9 +19,9 @@ function userHTML(plant){
     <div class="plant-card__container">
         <h3>${plant.name}</h4>
         <p><b>Details:</b> ${plant.details}</p>
-        <p><b>Growth Habit:</b> ${plant.growthhabit}</p>
+        <p><b>Growth Habit:</b> ${plant.growth_habit}</p>
         <p><b>Rarity:</b> ${plant.rarity}</p>
-        <p><b>States:</b> <a href="https://${plant.states}" target="_blank">${plant.website}</a></p>
+        <p><b>States:</b> ${plant.states}</p>
     </div>
     </div>`;
 }
