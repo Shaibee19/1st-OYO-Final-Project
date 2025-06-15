@@ -8,16 +8,28 @@
     <script src="https://kit.fontawesome.com/c00ad18886.js" crossorigin="anonymous"></script>
     <script src="./assets/openapi.json"></script>
     <script src="./index.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init({
+          publicKey: "M_OoP5ANfy9nBleaM",
+          });
+      })();
+    </script>
   </head>
 
   <body>
     <section id="navigation">
       <nav class="container">
         <div class="row nav__row">
-          <figure class="nav__logo">
-            <img class="nav__logo--img" src="./assets/Planty Logo -- light.jpg" alt=""/>
-          </figure>
-          <div class="nav__logo--title">Planty</div>
+          <div class="nav__logo--wrapper">
+            <figure class="nav__logo">
+              <img class="nav__logo--img" src="./assets/Planty Logo -- light.jpg" alt=""/>
+            </figure>
+            <div class="nav__logo--title"><span class="purple">Planty</span></div>
+          </div>
           <ul class="nav__links">
             <li>
               <a href="" class="nav__link link__hover-effect">Home</a>
@@ -78,7 +90,7 @@
         <div class="row results__row">
           <h2 class="results__title">Search Results:</h2>
           <h3 class="results__subtitle">
-            <span class="purple">Options:</span>
+            Options:
             <select name="" id="filter" onchange="onSearchChange(event)">
                 <option value="" disabled selected>Sort</option>
                 <option value="DETAILS">Details</option>
@@ -100,32 +112,93 @@
               </div>
             </div>
           </div>
+          <div class="plant">
+            <div class="plant-card">
+              <div class="plant-card__container">
+                <h4>Plant Name</h4>
+                <p><b>Details:</b> Plant Details</p>
+                <p><b>Growth Habit:</b> Plant Growth Habit</p>
+                <p><b>Rarity:</b> Plany Rarity</p>
+                <p><b>States:</b> Plant States</p>
+              </div>
+            </div>
+          </div>
+          <div class="plant">
+            <div class="plant-card">
+              <div class="plant-card__container">
+                <h4>Plant Name</h4>
+                <p><b>Details:</b> Plant Details</p>
+                <p><b>Growth Habit:</b> Plant Growth Habit</p>
+                <p><b>Rarity:</b> Plant Rarity</p>
+                <p><b>States:</b> Plant States</p>
+              </div>
+            </div>
+          </div>
+          <div class="plant">
+            <div class="plant-card">
+              <div class="plant-card__container">
+                <h4>Plant Name</h4>
+                <p><b>Details:</b> Plant Details</p>
+                <p><b>Growth Habit:</b> Plant Growth Habit</p>
+                <p><b>Rarity:</b> Plany Rarity</p>
+                <p><b>States:</b> Plant States</p>
+              </div>
+            </div>
+          </div>
+          <div class="plant">
+            <div class="plant-card">
+              <div class="plant-card__container">
+                <h4>Plant Name</h4>
+                <p><b>Details:</b> Plant Details</p>
+                <p><b>Growth Habit:</b> Plant Growth Habit</p>
+                <p><b>Rarity:</b> Plany Rarity</p>
+                <p><b>States:</b> Plant States</p>
+              </div>
+            </div>
+          </div>
+          <div class="plant">
+            <div class="plant-card">
+              <div class="plant-card__container">
+                <h4>Plant Name</h4>
+                <p><b>Details:</b> Plant Details</p>
+                <p><b>Growth Habit:</b> Plant Growth Habit</p>
+                <p><b>Rarity:</b> Plant Rarity</p>
+                <p><b>States:</b> Plant States</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <footer id="footer">
       <div class="container">
         <div class="row footer__row">
-          <figure class="footer__logo">
-            <img class="footer__logo--img" src="./assets/Planty Logo -- dark.jpg" alt=""/>
-          </figure>
-          <div class="footer__social--list">
-            <a class="footer__social--link link__hover-effect" 
-              href="https://github.com/Shaibee19" target="_blank">
-              GitHub 
-            </a>
-            <a class="footer__social--link link__hover-effect" 
-              href="https://www.linkedin.com/in/shai-gray-woodland-aa285343/" target="_blank">
-              LinkedIn 
-            </a>
-            <a class="footer__social--link link__hover-effect"
-              href="#" onclick="toggleModal()">
-              Contact 
-            </a>
-            <a class="footer__social--link link__hover-effect"
-              href="./assets/Shai Gray-Woodland Resume 20250513.pdf" target="_blank">
-              Resume 
-            </a>
+          <div class="footer__top">
+            <div class="footer__right">
+              <figure class="footer__logo">
+                <img class="footer__logo--img" src="./assets/Planty Logo -- dark.jpg" alt=""/>
+              </figure>
+            </div>
+            <div class="footer__left">
+              <div class="footer__social--list">
+                <a class="footer__social--link link__hover-effect" 
+                  href="https://github.com/Shaibee19" target="_blank">
+                  GitHub 
+                </a>
+                <a class="footer__social--link link__hover-effect" 
+                  href="https://www.linkedin.com/in/shai-gray-woodland-aa285343/" target="_blank">
+                  LinkedIn 
+                </a>
+                <a class="footer__social--link link__hover-effect"
+                  href="#" onclick="toggleModal()">
+                  Contact 
+                </a>
+                <a class="footer__social--link link__hover-effect"
+                  href="./assets/Shai Gray-Woodland Resume 20250513.pdf" target="_blank">
+                  Resume 
+                </a>
+              </div>
+            </div>
           </div>
           <div class="footer__copyright">
             Copyright © 2025 Shai Gray-Woodland

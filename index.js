@@ -9,12 +9,13 @@ async function main() {
 
 main();
 
-function showPlants(id) {
-    localStorage.setItem("id", id);
-    window.location.href = `${window.location.origin}/user.html`
+function showPlants(key) {
+  localStorage.setItem("id", key);
+  window.location.href = `${window.location.origin}/plant.html`
 }
 
-function userHTML(plant){
+
+function plantsHTML(plant){
     return `<div class="plant-card" onclick="showPlants(${plant.id})">
     <div class="plant-card__container">
         <h3>${plant.name}</h4>
@@ -40,7 +41,7 @@ function userHTML(plant){
 // }
 
 // async function renderPosts(plantId) {
-//   const posts = await fetch(`https://jsonplaceholder.typicode.com/posts?plantId=${plantId || id}`);
+//   const posts = await fetch(`https://plants10.p.rapidapi.com/plants${plantId || id}`);
 //   const postsData = await posts.json();
 //   postListEl.innerHTML = postsData.map(post => postHTML(post)).join('');
 // }

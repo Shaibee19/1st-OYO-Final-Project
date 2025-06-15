@@ -95,10 +95,15 @@ nav {
     height: 100px;
 }
 
+.nav__logo--wrapper {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
 .nav__logo {
     display: flex;
     align-items: center;
-    gap: 12px;
 }
 
 .nav__logo--img {
@@ -107,7 +112,7 @@ nav {
 }
 
 .nav__logo--title {
-    font-size: 32px;
+    font-size: 36px;
     color: #f6f3ef;
     font-weight: 900;
 }
@@ -199,10 +204,15 @@ input {
 }
 
 .search__wrapper {
+    scale: 1.5;
     color: black;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 300ms ease;
 }
 
-.search__wrapper:hover:after {
+.search__wrapper:hover {
     color: #5bbd2dea;
 }
 
@@ -352,22 +362,23 @@ RESULTS
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
-    height: 40vh;
+    height: 120px;
 }
 
 .results__title,
 .results__subtitle {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .plant-list {
   width: auto;
   display: flex;
   flex-wrap: wrap;
+  padding: 0 0 80px 220px;
 }
 
 .plant {
-  width: 50%;
+  width: calc(1 / 3);
 }
 
 .plant-card {
@@ -375,6 +386,7 @@ RESULTS
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   margin: 10px;
   transition: 0.3s;
+  border: solid #cb6ce6;
   border-radius: 10px;
 }
 
@@ -401,28 +413,47 @@ footer {
 
 .footer__row {
     display: flex;
+    flex-direction: column;
+    height: 32vh;
+}
+
+.footer__top {
+    width: ;
+    display: flex;
     flex-direction: row-reverse;
-    align-items: center;
     justify-content: space-between;
 }
 
-.footer__copyright {
-    align-self: flex-end;
+.footer__right {
+    margin-left: 120px;
 }
 
 .footer__logo--img {
-    width: 70px;
+    width: 120px;
+    height: 120px;;
+}
+
+.footer__left {
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .footer__social--list {
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
 }
 
 .footer__social--link,
 .footer__copyright {
     color: white;
+}
+
+.footer__copyright {
+    font-size: 12px;
+    margin-top: 80px;
 }
