@@ -414,11 +414,10 @@ footer {
 .footer__row {
     display: flex;
     flex-direction: column;
-    height: 32vh;
+    height: 24vh;
 }
 
 .footer__top {
-    width: ;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -455,5 +454,4 @@ footer {
 
 .footer__copyright {
     font-size: 12px;
-    margin-top: 80px;
 }

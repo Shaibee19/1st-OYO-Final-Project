@@ -1,3 +1,5 @@
+// *****key!!!!!!*****: 'b1800b0031mshe8a726c7a8fcdc2p17faeajsn0814e57392c3'
+
 let isModalOpen = false;
 const plantListEl = document.querySelector(".plant-list");
 
@@ -5,27 +7,44 @@ async function main() {
   const plants = await fetch("https://plants10.p.rapidapi.com/plants");
   const plantsData = await plants.json();
   plantListEl.innerHTML = plantsData.map(plant => plantHTML(plant)).join("");
+  const url = "https://plants10.p.rapidapi.com/plants";
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "b1800b0031mshe8a726c7a8fcdc2p17faeajsn0814e57392c3",
+      "X-RapidAPI-Host": "plants10.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const res = await fetch(url, options);
+    const data = await res.json();
+    plantListEl.innerHTML = data.map(plant => plantHTML(plant)).join("");
+  } catch (err) {
+    console.error("API error:", err);
+  }
 }
 
 main();
 
-function showPlants(key) {
-  localStorage.setItem("id", key);
-  window.location.href = `${window.location.origin}/plant.html`
-}
+
+// function showPlants(key) {
+//   localStorage.setItem("id", key);
+//   window.location.href = `${window.location.origin}/plant.html`
+// }
 
 
-function plantsHTML(plant){
-    return `<div class="plant-card" onclick="showPlants(${plant.id})">
-    <div class="plant-card__container">
-        <h3>${plant.name}</h4>
-        <p><b>Details:</b> ${plant.details}</p>
-        <p><b>Growth Habit:</b> ${plant.growth_habit}</p>
-        <p><b>Rarity:</b> ${plant.rarity}</p>
-        <p><b>States:</b> ${plant.states}</p>
-    </div>
-    </div>`;
-}
+// function plantsHTML(plant){
+//     return `<div class="plant-card" onclick="showPlants(${plant.id})">
+//     <div class="plant-card__container">
+//         <h3>${plant.name}</h4>
+//         <p><b>Details:</b> ${plant.details}</p>
+//         <p><b>Growth Habit:</b> ${plant.growth_habit}</p>
+//         <p><b>Rarity:</b> ${plant.rarity}</p>
+//         <p><b>States:</b> ${plant.states}</p>
+//     </div>
+//     </div>`;
+// }
 
 // Growth Habit - https://plants10.p.rapidapi.com/plants/growth_habit
 // States - https://plants10.p.rapidapi.com/plants/states
