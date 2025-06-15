@@ -1,38 +1,29 @@
 // *****key!!!!!!*****: 'b1800b0031mshe8a726c7a8fcdc2p17faeajsn0814e57392c3'
 
 let isModalOpen = false;
-const plantListEl = document.querySelector(".plant-list");
+// const plantListEl = document.querySelector(".plant-list");
 
-async function main() {
-  const plants = await fetch("https://plants10.p.rapidapi.com/plants");
-  const plantsData = await plants.json();
-  plantListEl.innerHTML = plantsData.map(plant => plantHTML(plant)).join("");
-  const url = "https://plants10.p.rapidapi.com/plants";
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "b1800b0031mshe8a726c7a8fcdc2p17faeajsn0814e57392c3",
-      "X-RapidAPI-Host": "plants10.p.rapidapi.com",
-    },
-  };
+// async function main() {
+//   const plants = await fetch("https://plants10.p.rapidapi.com/plants");
+//   const plantsData = await plants.json();
+//   plantListEl.innerHTML = plantsData.map(plant => plantHTML(plant)).join("");
+//   const url = "https://plants10.p.rapidapi.com/plants";
+//   const options = {
+//     method: "GET",
+//     headers: {
+//       "X-RapidAPI-Key": "b1800b0031mshe8a726c7a8fcdc2p17faeajsn0814e57392c3",
+//       "X-RapidAPI-Host": "plants10.p.rapidapi.com",
+//     },
+//   };
 
-  try {
-    const res = await fetch(url, options);
-    const data = await res.json();
-    plantListEl.innerHTML = data.map(plant => plantHTML(plant)).join("");
-  } catch (err) {
-    console.error("API error:", err);
-  }
-}
-
-main();
-
-
-// function showPlants(key) {
-//   localStorage.setItem("id", key);
-//   window.location.href = `${window.location.origin}/plant.html`
+//   try {
+//     const res = await fetch(url, options);
+//     const data = await res.json();
+//     plantListEl.innerHTML = data.map(plant => plantHTML(plant)).join("");
+//   } catch (err) {
+//     console.error("API error:", err);
+//   }
 // }
-
 
 // function plantsHTML(plant){
 //     return `<div class="plant-card" onclick="showPlants(${plant.id})">
@@ -45,6 +36,22 @@ main();
 //     </div>
 //     </div>`;
 // }
+
+// main();
+
+async function main () {
+  const plants = await fetch("https://plants10.p.rapidapi.com/plants");
+  const plantsData = plants.json();
+  console.log(plantsData);
+}
+
+
+// function showPlants(key) {
+//   localStorage.setItem("id", key);
+//   window.location.href = `${window.location.origin}/plant.html`
+// }
+
+
 
 // Growth Habit - https://plants10.p.rapidapi.com/plants/growth_habit
 // States - https://plants10.p.rapidapi.com/plants/states
