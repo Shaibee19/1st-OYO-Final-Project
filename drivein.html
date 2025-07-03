@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fruity Final Project</title>
-    <link rel="stylesheet" href="./style.css" />
+    <title>drivein Final Project</title>
+    <link rel="stylesheet" href="./movie-style.css" />
     <script src="https://kit.fontawesome.com/c00ad18886.js" crossorigin="anonymous"></script>
     <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
@@ -24,9 +24,9 @@
         <div class="row nav__row">
           <div class="nav__logo--wrapper">
             <figure class="nav__logo">
-              <img class="nav__logo--img" src="./assets/Planty Logo -- light.jpg" alt=""/>
+              <img class="nav__logo--img" src="./assets/Black Blue Illustrative Simple Milk Tea Logo--Light.png" alt=""/>
             </figure>
-            <div class="nav__logo--title"><span class="purple">Planty</span></div>
+            <div class="nav__logo--title"><span class="purple">Mooviez</span></div>
           </div>
           <ul class="nav__links">
             <li>
@@ -38,25 +38,28 @@
             <li>
               <a href="#" onclick="toggleModal()" class="nav__link nav__link--primary">Contact Me</a>
             </li>
+            <li>
+                <button id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i></button>
+            </li>
           </ul>
         </div>
       </nav>
       <header id="header">
         <div class="container">
-          <h1 class="header__title">Nibble through our Plants</h1>
-          <div class="input__wrapper">
-            <input type="text" placeholder="Graze by Scientific name, Common name or Family"/>
-            <div class="search__wrapper">
+          <h1 class="header__title">Trail through our Motion Pictures</h1>
+          <form class="input__wrapper">
+            <input type="text" id="search-input" placeholder="Graze by Title, Year, Genre, or even Rating"/>
+            <button type="submit" class="search__wrapper">
               <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-          </div>
+            </button>
+          </form>
         </div>
       </header>
       <div class="modal">
         <div class="modal__half modal__right">
           <i class="fa-solid fa-xmark modal__exit click" onclick="toggleModal()"></i>
           <h3 class="modal__title modal__title--right">Let's have a chat!</h3>
-          <h4 class="modal__subtitle modal__subtitle--right">Any questions about our planty friends - throw me a vine</h4>
+          <h4 class="modal__subtitle modal__subtitle--right">Any beef about our udderly great moovies - milk the moo-ment!</h4>
           <form id="contact__form" onsubmit="contact(event)">
             <div class="form__item">
               <label class="form__item--label">Name</label>
@@ -71,18 +74,18 @@
                     <textarea class="input" name="message" type="text" required></textarea>
                 </div>
                 <button id="contact__submit" class="form__submit">
-                  Plant the Seed
+                  Join the Herd
                 </button>
               </form>
               <div class="modal__overlay modal__overlay--loading">
                 <i class="fa-solid fa-spinner"></i>
               </div>
               <div class="modal__overlay modal__overlay--success">
-                Hooray, Appreciate your message! Looking forward to growing with you soon.🌿
+                Holy cow, Appreciate your message! Looking forward to growing with you soon.🌿
               </div>
             </div>
           </section>
-          <img src="./assets/Planty Header.jpg" alt="" class="bg--img"/>
+          <img src="./assets/cow-print-pattern-collage-dv2ww68xa1jv74bi.jpg" alt="" class="bg--img"/>
           <section id="results">
             <div class="container">
               <div class="row results__row">
@@ -97,73 +100,20 @@
               </select>
             </h3>
           </div>
-          <div class="plant-list">
-            <div class="plant">
-            <div class="plant-card">
-              <div class="plant-card__container">
-                <h4>Plant Name</h4>
-                <p><b>Details:</b> Plant Details</p>
-                <p><b>Growth Habit:</b> Plant Growth Habit</p>
-                <p><b>Rarity:</b> Plany Rarity</p>
-                <p><b>States:</b> Plant States</p>
+          <div class="movie-list">
+             <div class="movie">
+              <div class="movie-card">
+                <div class="movie-card__container">
+                  <!-- <img> -->
+                  <div class="movie-card__info">
+                  <h4>Movie Name</h4>
+                  <p><b>Year:</b>Movie Year</p>
+                  <p><b>Genre:</b>Movie Genre</p>
+                  <p><b>Rating:</b>Movie Rating</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-            <div class="plant">
-            <div class="plant-card">
-              <div class="plant-card__container">
-                <h4>Plant Name</h4>
-                <p><b>Details:</b> Plant Details</p>
-                <p><b>Growth Habit:</b> Plant Growth Habit</p>
-                <p><b>Rarity:</b> Plany Rarity</p>
-                <p><b>States:</b> Plant States</p>
-              </div>
-            </div>
-          </div>
-            <div class="plant">
-            <div class="plant-card">
-              <div class="plant-card__container">
-                <h4>Plant Name</h4>
-                <p><b>Details:</b> Plant Details</p>
-                <p><b>Growth Habit:</b> Plant Growth Habit</p>
-                <p><b>Rarity:</b> Plany Rarity</p>
-                <p><b>States:</b> Plant States</p>
-              </div>
-            </div>
-          </div>
-            <div class="plant">
-            <div class="plant-card">
-              <div class="plant-card__container">
-                <h4>Plant Name</h4>
-                <p><b>Details:</b> Plant Details</p>
-                <p><b>Growth Habit:</b> Plant Growth Habit</p>
-                <p><b>Rarity:</b> Plany Rarity</p>
-                <p><b>States:</b> Plant States</p>
-              </div>
-            </div>
-          </div>
-            <div class="plant">
-            <div class="plant-card">
-              <div class="plant-card__container">
-                <h4>Plant Name</h4>
-                <p><b>Details:</b> Plant Details</p>
-                <p><b>Growth Habit:</b> Plant Growth Habit</p>
-                <p><b>Rarity:</b> Plany Rarity</p>
-                <p><b>States:</b> Plant States</p>
-              </div>
-            </div>
-          </div>
-            <div class="plant">
-            <div class="plant-card">
-              <div class="plant-card__container">
-                <h4>Plant Name</h4>
-                <p><b>Details:</b> Plant Details</p>
-                <p><b>Growth Habit:</b> Plant Growth Habit</p>
-                <p><b>Rarity:</b> Plany Rarity</p>
-                <p><b>States:</b> Plant States</p>
-              </div>
-            </div>
-          </div>
+             </div>
         </div>
       </div>
     </section>
@@ -173,7 +123,7 @@
           <div class="footer__top">
             <div class="footer__right">
               <figure class="footer__logo">
-                <img class="footer__logo--img" src="./assets/Planty Logo -- dark.jpg" alt=""/>
+                <img class="footer__logo--img" src="./assets/Black Blue Illustrative Simple Milk Tea Logo--Dark.png" alt=""/>
               </figure>
             </div>
             <div class="footer__left">
@@ -203,6 +153,6 @@
         </div>
       </div>
     </footer>
-    <script src="./index.js"></script>
+    <script src="./omdb-index.js"></script>
   </body>
 </html>

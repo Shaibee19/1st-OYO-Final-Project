@@ -1,91 +1,75 @@
 // *****key!!!!!!*****: 'b1800b0031mshe8a726c7a8fcdc2p17faeajsn0814e57392c3'
+// API: https://plants-api-docs.netlify.app/
 
 let isModalOpen = false;
-// const plantListEl = document.querySelector(".plant-list");
+const plantListEl = document.querySelector(".plant-list");
+const filterSelect = document.getElementById("filter");
 
-// async function main() {
-//   const plants = await fetch("https://plants10.p.rapidapi.com/plants");
-//   const plantsData = await plants.json();
-//   plantListEl.innerHTML = plantsData.map(plant => plantHTML(plant)).join("");
-//   const url = "https://plants10.p.rapidapi.com/plants";
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       "X-RapidAPI-Key": "b1800b0031mshe8a726c7a8fcdc2p17faeajsn0814e57392c3",
-//       "X-RapidAPI-Host": "plants10.p.rapidapi.com",
-//     },
-//   };
+async function main() {
+  const token = "YOUR_TREFLE_API_TOKEN_HERE";
+  const url = `https://trefle.io/api/v1/plants?token=3_RD8n6fAsTpmUNncke09lMKT8zl21iWnqFgeYxVsjg`;
+  const response = await fetch(url);
+  const json = await response.json();
+  const data = json.data;
 
-//   try {
-//     const res = await fetch(url, options);
-//     const data = await res.json();
-//     plantListEl.innerHTML = data.map(plant => plantHTML(plant)).join("");
-//   } catch (err) {
-//     console.error("API error:", err);
-//   }
-// }
+  try {
+    plantListEl.innerHTML = "<p>Loading plants...</p>";
+    const response = await fetch(url, options);
+    const data = await response.json();
 
-// function plantsHTML(plant){
-//     return `<div class="plant-card" onclick="showPlants(${plant.id})">
-//     <div class="plant-card__container">
-//         <h3>${plant.name}</h4>
-//         <p><b>Details:</b> ${plant.details}</p>
-//         <p><b>Growth Habit:</b> ${plant.growth_habit}</p>
-//         <p><b>Rarity:</b> ${plant.rarity}</p>
-//         <p><b>States:</b> ${plant.states}</p>
-//     </div>
-//     </div>`;
-// }
-
-// main();
-
-async function main () {
-  const plants = await fetch("https://plants10.p.rapidapi.com/plants");
-  const plantsData = plants.json();
-  console.log(plantsData);
+    // Save the original data for future use (e.g., sorting)
+    window.plantData = data;
+    displayPlants(data);
+  } catch (error) {
+    console.error("API Fetch Error:", error);
+    plantListEl.innerHTML = "<p>Failed to load plant data.</p>";
+  }
 }
 
+function displayPlants(plants) {
+  const limitedPlants = plants.slice(0, 6); // Only take the first 6
+  plantListEl.innerHTML = limitedPlants
+    .map((plant) => plantHTML(plant))
+    .join("");
+}
 
-// function showPlants(key) {
-//   localStorage.setItem("id", key);
-//   window.location.href = `${window.location.origin}/plant.html`
-// }
+function plantHTML(plant) {
+  return `
+    <div class="plant-card">
+      <div class="plant-card__container">
+        <h4>${plant.common_name || "Unknown Name"}</h4>
+        <p><b>Scientific Name:</b> ${plant.scientific_name || "N/A"}</p>
+        <p><b>Family:</b> ${plant.family_common_name || "N/A"}</p>
+        <p><b>Year Discovered:</b> ${plant.year || "N/A"}</p>
+        <p><b>Bibliography:</b> ${plant.bibliography || "N/A"}</p>
+      </div>
+    </div>
+  `;
+}
 
+filterSelect.addEventListener("change", function (event) {
+  const sortBy = event.target.value;
+  let sortedData = [...(window.plantData || [])];
 
+  if (sortBy === "RARITY") {
+    const rarityOrder = ["common", "uncommon", "rare", "very rare"];
+    sortedData.sort((a, b) => {
+      const rA = rarityOrder.indexOf((a.rarity || "").toLowerCase());
+      const rB = rarityOrder.indexOf((b.rarity || "").toLowerCase());
+      return rA - rB;
+    });
+  } else {
+    sortedData.sort((a, b) => {
+      valA = (a[sortBy] || "").toString().toLowerCase();
+      valB = (b[sortBy] || "").toString().toLowerCase();
+      return valA.localeCompare(valB);
+    });
+  }
 
-// Growth Habit - https://plants10.p.rapidapi.com/plants/growth_habit
-// States - https://plants10.p.rapidapi.com/plants/states
-// Rarity - https://plants10.p.rapidapi.com/plants/rarity
-// Details - https://plants10.p.rapidapi.com/plants/details
+  displayPlants(sortedData);
+});
 
-// const postListEl = document.querySelector('.post-list');
-// const id = localStorage.getItem("id");
-
-// async function onSearchChange(event) {
-//     const id = event.target.value;
-//     renderPosts(id)
-// }
-
-// async function renderPosts(plantId) {
-//   const posts = await fetch(`https://plants10.p.rapidapi.com/plants${plantId || id}`);
-//   const postsData = await posts.json();
-//   postListEl.innerHTML = postsData.map(post => postHTML(post)).join('');
-// }
-
-// function postHTML(post) {
-//     return `
-//     <div class="post">
-//             <div class="post__title">
-//                 ${post.title}
-//             </div>
-//             <p class="post__body">
-//                 ${post.body}
-//             </p>
-//             </div>
-//     `
-// }
-
-// renderPosts();
+main();
 
 function contact(event) {
   event.preventDefault();
@@ -111,16 +95,11 @@ function contact(event) {
     });
 }
 
-function toggleModal () {
-    if (isModalOpen) {
-        isModalOpen = false;
-        return document.body.classList.remove("modal--open");
-    }
-    isModalOpen = true;
-    document.body.classList += " modal--open";
+function toggleModal() {
+  if (isModalOpen) {
+    isModalOpen = false;
+    return document.body.classList.remove("modal--open");
+  }
+  isModalOpen = true;
+  document.body.classList += " modal--open";
 }
-
-
-
-
-
