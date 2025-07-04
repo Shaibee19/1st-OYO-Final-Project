@@ -1,14 +1,18 @@
-async function main() {
-  const movies = await fetch("http://www.omdbapi.com/?i=tt3896198&apikey=4ea1d0b9");
-  const moviesData = await movies.json();
-  const movieListEl = document.querySelector(".movie-list")
+// apiKey = "4ea1d0b9"
 
+async function main() {
+  const movies = await fetch("http://www.omdbapi.com/?s=fast&apikey=4ea1d0b9");
+  const moviesData = await movies.json();
+  const movieListEl = document.querySelector(".movie-list");
+  
+  let isModalOpen = false;
   console.log(moviesData);
-  movieListEl.innerHTML = moviesData
+  
+  movieListEl.innerHTML = moviesData.Search
     .map(
-      (movie) => 
-        `<div class="movie-card">
-          <div class="movie-card__container">
+    (movie) =>
+      `<div class="movie-card">
+        <div class="movie-card__container">
           <img src=${movie.Poster} alt=""/>
             <div class="movie-card__info">
             <h4>${movie.Title}</h4>
@@ -17,20 +21,18 @@ async function main() {
             <p><b>Rating:</b> ${movie.Rating}</p>
             </div>
           </div>
-        </div>`
+      </div>`
     )
+    .slice(0, 6)
     .join("");
 }
 
 main();
 
-// const apiKey = "4ea1d0b9";
 // const movieListEl = document.querySelector(".movie-list");
 // const searchForm = document.getElementById("search-form");
 // const searchInput = document.getElementById("search-input");
-// const toggleBtn = document.getElementById("theme-toggle");
-
-// let isModalOpen = false;
+const toggleBtn = document.getElementById("theme-toggle");
 
 // searchForm.addEventListener("submit", async function (e) {
 //   e.preventDefault();
@@ -73,43 +75,44 @@ main();
 // }
 
 // Theme toggle (dark/light)
-// toggleBtn.addEventListener("click", () => {
-//   document.body.classList.toggle("dark-mode");
-//   toggleBtn.textContent = document.body.classList.contains("dark-mode")
-//     ? "Switch to Light Mode"
-//     : "Switch to Dark Mode";
-// });
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  toggleBtn.textContent = document.body.classList.contains("dark-mode")
+    ? "Light Mode"
+    : "Dark Mode";
+    console.log("dark")
+});
 
 // Modal
-// function contact(event) {
-//   event.preventDefault();
-//   const loading = document.querySelector(".modal__overlay--loading");
-//   const success = document.querySelector(".modal__overlay--success");
-//   loading.classList += " modal__overlay--visible";
-//   emailjs
-//     .sendForm(
-//       "service_lq4pqm1",
-//       "template_j57chsp",
-//       event.target,
-//       "M_OoP5ANfy9nBleaM"
-//     )
-//     .then(() => {
-//       loading.classList.remove("modal__overlay--visible");
-//       success.classList += " modal__overlay--visible";
-//     })
-//     .catch(() => {
-//       loading.classList.remove("modal__overlay--visible");
-//       alert(
-//         "The email service is temporarily unavailable. Please contact me directly at shaipattzgray@gmail.com"
-//       );
-//     });
-// }
+function contact(event) {
+  event.preventDefault();
+  const loading = document.querySelector(".modal__overlay--loading");
+  const success = document.querySelector(".modal__overlay--success");
+  loading.classList += " modal__overlay--visible";
+  emailjs
+    .sendForm(
+      "service_lq4pqm1",
+      "template_j57chsp",
+      event.target,
+      "M_OoP5ANfy9nBleaM"
+    )
+    .then(() => {
+      loading.classList.remove("modal__overlay--visible");
+      success.classList += " modal__overlay--visible";
+    })
+    .catch(() => {
+      loading.classList.remove("modal__overlay--visible");
+      alert(
+        "The email service is temporarily unavailable. Please contact me directly at shaipattzgray@gmail.com"
+      );
+    });
+}
 
-// function toggleModal() {
-//   if (isModalOpen) {
-//     isModalOpen = false;
-//     return document.body.classList.remove("modal--open");
-//   }
-//   isModalOpen = true;
-//   document.body.classList += " modal--open";
-// }
+function toggleModal() {
+  if (isModalOpen) {
+    isModalOpen = false;
+    return document.body.classList.remove("modal--open");
+  }
+  isModalOpen = true;
+  document.body.classList += " modal--open";
+}
