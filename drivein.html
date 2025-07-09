@@ -47,7 +47,7 @@
       <header id="header">
         <div class="container">
           <h1 class="header__title">Trail through our Motion Pictures</h1>
-          <form class="input__wrapper">
+          <form class="input__wrapper" id="search-form">
             <input type="text" id="search-input" placeholder="Graze by Title, Year, Genre, or even Rating"/>
             <button type="submit" class="search__wrapper">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -92,7 +92,8 @@
                 <h2 class="results__title">Search Results:</h2>
           <h3 class="results__subtitle">
             Options:
-            <select name="" id="filter" onchange="onSearchChange(event)">
+            <select name="" id="filter">
+              <!-- onchange="onSearchChange(event)" -->
               <option value="" disabled selected>Sort</option>
               <option value="movie.Title">Title</option>
                 <option value="movie.Year">Year</option>
