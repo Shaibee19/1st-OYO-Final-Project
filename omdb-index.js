@@ -1,45 +1,48 @@
-// apiKey = "4ea1d0b9"
+const apiKey = "4ea1d0b9"
 
+// GRABBING ELEMENTS FROM HTML
 let isModalOpen = false;
 const movieListEl = document.querySelector(".movie-list");
 //   movieListEl.innerHTML = "<p>Loading movies...</p>";
 const searchName = document.querySelector(".searchName")
+
+// GLOBAL MOVIES VARIABLE
 let currentMovies = [];
 
-// Search Button || Calling/Displaying API
+// SEARCH BUTTON
 function onSearchChange(event) {
   main(event.target.value);
   searchName.innerHTML = event.target.value;
 }
 
-
+// CALLING API
 async function main(searchInput) {
   try {
-    const movies = await fetch(`http://www.omdbapi.com/?s=${searchInput}&apikey=4ea1d0b9`);
+    const movies = await fetch(`http://www.omdbapi.com/?s=${searchInput}&apikey=${apiKey}`);
     const moviesData = await movies.json();
     currentMovies = moviesData.Search;
-    displayMovies(currentMovies);
+    // displayMovies(currentMovies);
+  
+  // DISPLAYING MOVIES
+  // function displayMovies(movieList) {
+    if (moviesData.Response === "True" && currentMovies) {
+      movieListEl.innerHTML = currentMovies.map((movie) => movieHTML(movie))
+      .slice(0, 6)
+      .join("");
+    } else {
+      movieListEl.innerHTML =
+      "<p>No mooviez found for your search. Please low a different term.</p>";
+      console.warn(
+        "OMDB API response:",
+        moviesData.Error || "No search results."
+      );
+    }
   } catch (err) {
     console.error("Error fetching movies:", err);
     movieListEl.innerHTML =
       "<p>An error occurred while rounding up those mooviez. Please try again later.</p>";
   }
 }
-    
-function displayMovies(movieList) {
-    if (moviesData.Response === "True" && movieList) {
-      movieListEl.innerHTML = movieList.map((movie) => movieHTML(movie))
-        .slice(0, 6)
-        .join("");
-    } else {
-      movieListEl.innerHTML =
-        "<p>No mooviez found for your search. Please low a different term.</p>";
-      console.warn(
-        "OMDB API response:",
-        moviesData.Error || "No search results."
-      );
-    }
-  }
 
 function movieHTML(movie) {
   return `<div class="movie-card" onClick="movieDetails()">
@@ -63,7 +66,7 @@ function movieDetails() {
 
 main("lion");
 
-// Sort Button
+// SORT BUTTON
 function onSortChange(event) {
   const sortOption = event.target.value;
 
@@ -75,10 +78,10 @@ function onSortChange(event) {
     sortedMovies.sort((a, b) => a.Year - b.Year)
   }
 
-  displayMovies(sortedMovies);
+  main(sortedMovies);
 }
 
-// Theme toggle (dark/light)
+// THEME TOGGLE (dark/light)
 const toggleBtn = document.getElementById("theme-toggle");
 
 toggleBtn.addEventListener("click", () => {
@@ -89,7 +92,7 @@ toggleBtn.addEventListener("click", () => {
   console.log("dark");
 });
 
-// Modal
+// MODAL
 function contact(event) {
   event.preventDefault();
   const loading = document.querySelector(".modal__overlay--loading");
