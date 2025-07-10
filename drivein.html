@@ -36,7 +36,7 @@
               <a href="" class="nav__link link__hover-effect">Find your Moovie</a>
             </li>
             <li>
-              <a href="#" onclick="toggleModal()" class="nav__link nav__link--primary">Contact Me</a>
+              <a href="#" onclick="toggleModal()" class="nav__link nav__link--primary">Contact</a>
             </li>
             <li>
                 <button id="theme-toggle">Mode Toggle</button>
@@ -81,7 +81,7 @@
                 <i class="fa-solid fa-spinner"></i>
               </div>
               <div class="modal__overlay modal__overlay--success">
-                Holy cow, Appreciate your message! Looking forward to growing with you soon.🌿
+                Holy cow, Appreciate your message! Looking forward to grazing with you soon. 🐮
               </div>
             </div>
           </section>
@@ -90,14 +90,15 @@
             <div class="container">
               <div class="row results__row">
                 <h2 class="results__title">Search Results:</h2>
+                <span class="searchName" style="color: #f8f8f8; opacity: 0.5"></span>
           <h3 class="results__subtitle">
             Options:
-            <select name="" id="filter">
-              <!-- onchange="onSearchChange(event)" -->
+            <select name="" id="movieSort" onchange="onSortChange(event)">
               <option value="" disabled selected>Sort</option>
-              <option value="movie.Title">Title</option>
-                <option value="movie.Year">Year</option>
-                <option value="movie.genre">Genre</option>
+                <option value="ascending">Title: A-Z</option>
+                <option value="descending">Title: Z-A</option>
+                <option value="newest">Year: Newest to Oldest</option>
+                <option value="oldest">Year: Oldest to Newest</option>
               </select>
             </h3>
           </div>

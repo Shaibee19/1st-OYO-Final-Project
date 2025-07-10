@@ -1,67 +1,86 @@
+// apiKey = "4ea1d0b9"
+
 let isModalOpen = false;
 const movieListEl = document.querySelector(".movie-list");
-const id = localStorage.getItem("id");
+//   movieListEl.innerHTML = "<p>Loading movies...</p>";
+const searchName = document.querySelector(".searchName")
+let currentMovies = [];
 
-async function onSearchChange(event) {
-  const id = event.target.value;
-  main(id)
+// Search Button || Calling/Displaying API
+function onSearchChange(event) {
+  main(event.target.value);
+  searchName.innerHTML = event.target.value;
 }
 
-async function main() {
-  // const apiKey = "4ea1d0b9"
-  const movies = await fetch(`http://www.omdbapi.com/?s=${id}&apikey=4ea1d0b9`);
-  const moviesData = await movies.json();
-  // const searchForm = document.getElementById("search-form");
-  // const searchInput = document.getElementById("search-input");
-  movieListEl.innerHTML = moviesData.Search.map((movie) => movieHTML(movie))
-  .slice(0, 6)
-  .join("");
-}
 
-main();
+async function main(searchInput) {
+  try {
+    const movies = await fetch(`http://www.omdbapi.com/?s=${searchInput}&apikey=4ea1d0b9`);
+    const moviesData = await movies.json();
+    currentMovies = moviesData.Search;
+    displayMovies(currentMovies);
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    movieListEl.innerHTML =
+      "<p>An error occurred while rounding up those mooviez. Please try again later.</p>";
+  }
+}
+    
+function displayMovies(movieList) {
+    if (moviesData.Response === "True" && movieList) {
+      movieListEl.innerHTML = movieList.map((movie) => movieHTML(movie))
+        .slice(0, 6)
+        .join("");
+    } else {
+      movieListEl.innerHTML =
+        "<p>No mooviez found for your search. Please low a different term.</p>";
+      console.warn(
+        "OMDB API response:",
+        moviesData.Error || "No search results."
+      );
+    }
+  }
 
 function movieHTML(movie) {
-  return `<div class="movie-card" onClick="displayMovies(${movie.imdbID})">
-  <div class="movie-card__container">
-  <img src=${movie.Poster} alt=""/>
-  <div class="movie-card__info">
-  <h4>${movie.Title}</h4>
-  <p><b>Year:</b> ${movie.Year}</p>
-  <p><b>Genre:</b> ${movie.Genre}</p>
-  <p><b>Rating:</b> ${movie.Rating}</p>
-  </div>
-  </div>
-  </div>`;
+  return `<div class="movie-card" onClick="movieDetails()">
+            <div class="movie-card__container">
+            <img src=${movie.Poster} alt=""/>
+              <div class="movie-card__info">
+                <h4>${movie.Title}</h4>
+                <p><b>Year:</b> ${movie.Year}</p>
+                <p><b>Genre:</b> ${movie.Genre}</p>
+                <p><b>Rating:</b> ${movie.Rating}</p>
+              </div>
+            </div>
+          </div>`;
 }
 
-// Event listener for search
-// searchForm.addEventListener("submit", async function (e) {
-//   e.preventDefault();
-//   const query = searchInput.value.trim();
-//   if (!query) return;
+function movieDetails() {
+  // console.log("Displaying details for movie ID:", imdbID)
+  // window.location.href = `movie-details.html?id=${imdbID}`;
+  alert("Haven't done this coding yet :'[");
+}
 
-//   const url = `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${apiKey}`;
-//   movieListEl.innerHTML = "<p>Loading movies...</p>";
+main("lion");
 
-//   try {
-//     const res = await fetch(url);
-//     const data = await res.json();
+// Sort Button
+function onSortChange(event) {
+  const sortOption = event.target.value;
 
-//     if (data.Response === "False") {
-//       movieListEl.innerHTML = "<p>No results found.</p>";
-//     } else {
-//       displayMovies(data.Search);
-//     }
-//   } catch (err) {
-//     movieListEl.innerHTML = "<p>Failed to load movie data.</p>";
-//     console.error(err);
-//   }
-// });
+  let sortedMovies = [...currentMovies]
 
+  if (sortOption === "newest") {
+    sortedMovies.sort((a, b) => b.Year - a.Year)
+  } else if (sortOption === "oldest") {
+    sortedMovies.sort((a, b) => a.Year - b.Year)
+  }
 
-const toggleBtn = document.getElementById("theme-toggle");
+  displayMovies(sortedMovies);
+}
 
 // Theme toggle (dark/light)
+const toggleBtn = document.getElementById("theme-toggle");
+
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
   toggleBtn.textContent = document.body.classList.contains("dark-mode")
