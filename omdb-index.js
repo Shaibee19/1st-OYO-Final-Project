@@ -72,10 +72,14 @@ function onSortChange(event) {
 
   let sortedMovies = [...currentMovies]
 
-  if (sortOption === "newest") {
+  if (sortOption === "NEWEST") {
     sortedMovies.sort((a, b) => b.Year - a.Year)
-  } else if (sortOption === "oldest") {
+  } else if (sortOption === "OLDEST") {
     sortedMovies.sort((a, b) => a.Year - b.Year)
+  } else if (sortOption === "ASCENDING") {
+    sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title))
+  } else if (sortOption === "DESCENDING") {
+    sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title))
   }
 
   main(sortedMovies);
