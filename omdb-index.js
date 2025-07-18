@@ -73,16 +73,16 @@ function onSortChange(event) {
   let sortedMovies = [...currentMovies]
 
   if (sortOption === "NEWEST") {
-    sortedMovies.sort((a, b) => b.Year - a.Year)
+    sortedMovies.sort((a, b) => parseInt(b.Year - a.Year))
   } else if (sortOption === "OLDEST") {
-    sortedMovies.sort((a, b) => a.Year - b.Year)
-  } else if (sortOption === "ASCENDING") {
-    sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title))
+    sortedMovies.sort((a, b) => parseInt(a.Year - b.Year))
   } else if (sortOption === "DESCENDING") {
+    sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title))
+  } else if (sortOption === "ASCENDING") {
     sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title))
   }
 
-  main(sortedMovies);
+  renderMovies();
 }
 
 // THEME TOGGLE (dark/light)
