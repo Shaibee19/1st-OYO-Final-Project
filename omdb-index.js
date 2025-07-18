@@ -21,10 +21,10 @@ async function main(searchInput) {
     const movies = await fetch(`http://www.omdbapi.com/?s=${searchInput}&apikey=${apiKey}`);
     const moviesData = await movies.json();
     currentMovies = moviesData.Search;
-    // displayMovies(currentMovies);
+    displayMovies(currentMovies);
   
   // DISPLAYING MOVIES
-  // function displayMovies(movieList) {
+  function displayMovies(movieList) {
     if (moviesData.Response === "True" && currentMovies) {
       movieListEl.innerHTML = currentMovies.map((movie) => movieHTML(movie))
       .slice(0, 6)
@@ -82,7 +82,7 @@ function onSortChange(event) {
     sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title))
   }
 
-  renderMovies();
+  displayMovies();
 }
 
 // THEME TOGGLE (dark/light)
