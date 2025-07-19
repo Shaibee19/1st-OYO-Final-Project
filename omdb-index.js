@@ -3,7 +3,7 @@ const apiKey = "4ea1d0b9";
 // GRABBING ELEMENTS FROM HTML
 let isModalOpen = false;
 const movieListEl = document.querySelector(".movie-list");
-//   movieListEl.innerHTML = "<p>Loading movies...</p>";
+// movieListEl.innerHTML = "<p class="loading">🍿 Loading movies...</p>";
 const searchName = document.querySelector(".searchName");
 
 // GLOBAL MOVIES VARIABLE
@@ -13,6 +13,17 @@ let currentMovies = [];
 function onSearchChange(event) {
   main(event.target.value);
   searchName.innerHTML = event.target.value;
+
+  const searchForm = document.getElementById("search-form");
+  const searchInput = document.getElementById("search-input");
+
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (query) {
+      main(query);
+    }
+  });
 }
 
 // CALLING API
@@ -28,7 +39,7 @@ async function main(searchInput) {
     // DISPLAYING MOVIES
     function displayMovies(movieList) {
       if (moviesData.Response === "True" && currentMovies) {
-          movieListEl.innerHTML = currentMovies
+        movieListEl.innerHTML = currentMovies
           .map((movie) => movieHTML(movie))
           .slice(0, 6)
           .join("");

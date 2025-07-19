@@ -422,6 +422,12 @@ input {
 
 /* MOVIE CARDS */
 
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 40px 0;
+}
+
 .movie {
   width: calc(100% / 3);
 }
