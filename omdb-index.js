@@ -37,11 +37,12 @@ async function main(searchInput) {
         moviesData.Error || "No search results."
       );
     }
-  } catch (err) {
-    console.error("Error fetching movies:", err);
-    movieListEl.innerHTML =
-      "<p>An error occurred while rounding up those mooviez. Please try again later.</p>";
   }
+} catch (err) {
+  console.error("Error fetching movies:", err);
+  movieListEl.innerHTML =
+    "<p>An error occurred while rounding up those mooviez. Please try again later.</p>";
+}
 }
 
 function movieHTML(movie) {
