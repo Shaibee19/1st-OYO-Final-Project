@@ -8,6 +8,7 @@ const searchName = document.querySelector(".searchName");
 
 // GLOBAL MOVIES VARIABLE
 let currentMovies = [];
+let moviesDataResponse = ''
 
 // SEARCH BUTTON
 function onSearchChange(event) {
@@ -26,32 +27,32 @@ function onSearchChange(event) {
   });
 }
 
+// DISPLAYING MOVIES
+function displayMovies(movieList) {
+  if (moviesDataResponse === "True" && movieList) {
+    movieListEl.innerHTML = movieList
+      .map((movie) => movieHTML(movie))
+      .slice(0, 6)
+      .join("");
+  } else {
+    movieListEl.innerHTML =
+      "<p>No mooviez found for your search. Please low a different term.</p>";
+    console.warn(
+      "OMDB API response:"
+    );
+  }
+}
+
 // CALLING API
 async function main(searchInput) {
   try {
     const movies = await fetch(
       `http://www.omdbapi.com/?s=${searchInput}&apikey=${apiKey}`
     );
-    const moviesData = await movies.json();
-    currentMovies = moviesData.Search;
+    const moviesData = await movies.json()
+    currentMovies = moviesData.Search
+    moviesDataResponse = moviesData.Response
     displayMovies(currentMovies);
-
-    // DISPLAYING MOVIES
-    function displayMovies(movieList) {
-      if (moviesData.Response === "True" && currentMovies) {
-        movieListEl.innerHTML = currentMovies
-          .map((movie) => movieHTML(movie))
-          .slice(0, 6)
-          .join("");
-      } else {
-        movieListEl.innerHTML =
-          "<p>No mooviez found for your search. Please low a different term.</p>";
-        console.warn(
-          "OMDB API response:",
-          moviesData.Error || "No search results."
-        );
-      }
-    }
   } catch (err) {
     console.error("Error fetching movies:", err);
     movieListEl.innerHTML =
@@ -106,6 +107,7 @@ function onSortChange(event) {
   } else if (sortOption === "ASCENDING") {
     sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title));
   }
+  console.log(sortedMovies)
 
   displayMovies(sortedMovies); // Pass the sorted array to displayMovies
 }
@@ -115,10 +117,18 @@ const toggleBtn = document.getElementById("theme-toggle");
 
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
+  // localStorage.setItem("theme", \/)
   toggleBtn.textContent = document.body.classList.contains("dark-mode")
     ? "Light Mode"
     : "Dark Mode";
   console.log("dark");
+
+  // Load saved preference
+  // window.addEventListener("DOMContentLoaded", () => {
+  //   const savedTheme = localStorage.getItem("theme");
+  //   if (savedTheme === "dark") {
+  //     document.body.classList.add("dark-mode");
+  //   }
 });
 
 // MODAL
