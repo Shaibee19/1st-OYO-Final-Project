@@ -62,6 +62,7 @@ function movieHTML(movie) {
           </div>`;
 }
 
+// FUTURE DETAIL DISPLAYING
 async function movieDetails() {
   // console.log("Displaying details for movie ID:", imdbID)
   // window.location.href = `movie-details.html?id=${imdbID}`;
@@ -81,6 +82,7 @@ main("lion");
 // SORT BUTTON
 function onSortChange(event) {
   const sortOption = event.target.value;
+  // document.getElementById("movieSort").addEventListener("change", onSortChange);
 
   let sortedMovies = [...currentMovies]; // A shallow copy to avoid mutating the original 'currentMovies'
 
