@@ -426,15 +426,6 @@ input {
   width: calc(100% / 3);
 }
 
-.movie-card {
-  background-color: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin: 10px;
-  transition: 0.3s;
-  border: solid #cb6ce6;
-  border-radius: 10px;
-}
-
 .movie-card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
@@ -452,10 +443,12 @@ input {
 
 .movie-card {
   background-color: #fff;
+  margin: 10px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   display: flex;
+  border: solid #cb6ce6;
   flex-direction: column;
   transition: transform 0.2s ease-in-out;
 }
